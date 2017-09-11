@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2017 at 01:15 PM
+-- Generation Time: Sep 11, 2017 at 02:05 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -32,6 +32,17 @@ CREATE TABLE `channel` (
   `id_channel` int(11) NOT NULL,
   `channel` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `channel`
+--
+
+INSERT INTO `channel` (`id_channel`, `channel`) VALUES
+(4, 'Fashion'),
+(3, 'Horoscope'),
+(1, 'Lifestyle'),
+(5, 'Relationship'),
+(2, 'Workout');
 
 -- --------------------------------------------------------
 
@@ -72,6 +83,14 @@ CREATE TABLE `sources` (
   `id_source` int(11) NOT NULL,
   `source` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sources`
+--
+
+INSERT INTO `sources` (`id_source`, `source`) VALUES
+(1, 'Other'),
+(2, 'Tabloid Imaji');
 
 -- --------------------------------------------------------
 
@@ -195,7 +214,7 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT for table `channel`
 --
 ALTER TABLE `channel`
-  MODIFY `id_channel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_channel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `read`
 --
@@ -205,7 +224,7 @@ ALTER TABLE `read`
 -- AUTO_INCREMENT for table `sources`
 --
 ALTER TABLE `sources`
-  MODIFY `id_source` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_source` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
