@@ -26,10 +26,9 @@ class Images extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_image', 'image'], 'required'],
-            [['id_image'], 'integer'],
-            [['image'], 'string', 'max' => 500],
-            [['image'], 'unique'],
+            [['image','title'], 'required'],
+            [['image'], 'image','extensions'=>'jpg, png','maxSize' => 5000000,],
+           
         ];
     }
 

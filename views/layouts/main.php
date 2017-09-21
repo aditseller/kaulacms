@@ -59,6 +59,14 @@ AppAsset::register($this);
 			],
 			
 			],
+			
+			['label' => 'Images',
+			'items' => [
+					['label' => 'Index Images', 'url' => ['/images/index']],
+					['label' => 'Add Images', 'url' => ['/images/add']],
+			],
+			
+			],
 
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]

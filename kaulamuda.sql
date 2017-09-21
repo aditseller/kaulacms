@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2017 at 02:05 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Sep 22, 2017 at 12:48 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -52,6 +52,7 @@ INSERT INTO `channel` (`id_channel`, `channel`) VALUES
 
 CREATE TABLE `images` (
   `id_image` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `image` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -89,7 +90,7 @@ CREATE TABLE `sources` (
 --
 
 INSERT INTO `sources` (`id_source`, `source`) VALUES
-(1, 'Other'),
+(1, 'Kaulamuda'),
 (2, 'Tabloid Imaji');
 
 -- --------------------------------------------------------
@@ -163,7 +164,7 @@ ALTER TABLE `channel`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
-  ADD UNIQUE KEY `image` (`image`);
+  ADD PRIMARY KEY (`id_image`);
 
 --
 -- Indexes for table `read`
@@ -215,6 +216,11 @@ ALTER TABLE `videos`
 --
 ALTER TABLE `channel`
   MODIFY `id_channel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `read`
 --
