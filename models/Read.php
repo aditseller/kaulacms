@@ -23,6 +23,7 @@ use Yii;
  */
 class Read extends \yii\db\ActiveRecord
 {
+	
     /**
      * @inheritdoc
      */
@@ -37,7 +38,7 @@ class Read extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'teaser', 'content', 'created_by', 'created_at', 'channel', 'tag', 'source'], 'required'],
+            [['title', 'teaser', 'content', 'created_by', 'created_at', 'channel', 'tag', 'source','image'], 'required'],
             [['content'], 'string'],
             [['created_by', 'channel', 'source'], 'integer'],
             [['created_at'], 'safe'],
@@ -48,6 +49,7 @@ class Read extends \yii\db\ActiveRecord
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['created_by' => 'id_user']],
             [['channel'], 'exist', 'skipOnError' => true, 'targetClass' => Channel::className(), 'targetAttribute' => ['channel' => 'id_channel']],
             [['source'], 'exist', 'skipOnError' => true, 'targetClass' => Sources::className(), 'targetAttribute' => ['source' => 'id_source']],
+			
         ];
     }
 
@@ -66,6 +68,7 @@ class Read extends \yii\db\ActiveRecord
             'channel' => 'Channel',
             'tag' => 'Tag',
             'source' => 'Source',
+			'image' => 'Image URL',
         ];
     }
 

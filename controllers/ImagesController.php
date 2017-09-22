@@ -32,10 +32,10 @@ class ImagesController extends Controller
 			
 			'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','add','view'],
+                'only' => ['index','add','view','indexrender','addrender','viewrender'],
                 'rules' => [
                     [
-                        'actions' => ['index','add','view'],
+                        'actions' => ['index','add','view','indexrender','addrender','viewrender'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,6 +58,19 @@ class ImagesController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+	
+	//Index Render
+	public function actionIndexrender()
+    {
+		$this->layout = "blank";
+        $searchModel = new ImagesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index_render', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Displays a single Images model.
@@ -67,6 +80,15 @@ class ImagesController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+	
+	// View Render
+	public function actionViewrender($id)
+    {
+		$this->layout = "blank";
+        return $this->render('view_render', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -100,6 +122,38 @@ class ImagesController extends Controller
             return $this->redirect(['view', 'id' => $model->id_image]);  
         } else {
             return $this->render('add', [
+                'model' => $model,
+            ]);
+        }
+    }
+	
+	
+	//Add Render
+	public function actionAddrender()
+    {
+		$this->layout = "blank";
+        $model = new Images();
+
+         if ($model->load(Yii::$app->request->post())) {
+            $model->image = UploadedFile::getInstance($model,'image');
+            if($model->save()) {
+                $model->image->saveAs('public/uploads/images/'.sha1($model->id_image).'.jpg');
+                    
+             
+                    
+                   //create thumbnail and Resizing Image Product
+                //Image::thumbnail('public/uploads/posts/'.sha1($model->id_post).'.jpg',450,600)
+                //->save(Yii::getAlias('public/uploads/posts/thumb-'.sha1($model->id_post).'.jpg'));
+				
+				//watermark 
+				//Image::watermark('public/uploads/posts/'.sha1($model->id_post).'-'.$model->image,'http://assets.memehits.com/watermark.png')
+				//->save(Yii::getAlias('public/uploads/posts/'.sha1($model->id_post).'-'.$model->image));
+        
+            }
+           
+            return $this->redirect(['viewrender', 'id' => $model->id_image]);  
+        } else {
+            return $this->render('add_render', [
                 'model' => $model,
             ]);
         }

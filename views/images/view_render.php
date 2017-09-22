@@ -26,24 +26,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-		</div>
 		
-		<div class="col-md-5">
-		<div class="input-group">
-      <input id="foo" type="text"  value="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg" class="form-control">
+		<?= Html::a('<< Back To Gallery',['indexrender'],['class'=>'btn btn-info','style'=>'']) ?>
+		</div>
+		</br>
+		
+		<div class="col-md-3">
+		<div class="input-group" style="width:700px;">
+      <input  id="foo" type="text"  value="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg" class="form-control">
       <span class="input-group-btn">
         <button class="btn btn-primary" type="button" data-clipboard-action="copy" data-clipboard-target="#foo">Copy URL</button>
       </span>
     </div><!-- /input-group -->
     </div>
 	</br>
-	</br>
-	</br>
-	</br>
+	
 	
 	
 	<div class="col-md-11">
-   <img style="width:525px;" src="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg">
+   <img style="width:700px;" src="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg">
 	</div>
 	
     </div>

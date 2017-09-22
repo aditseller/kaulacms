@@ -9,8 +9,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Images */
 
 $this->title = 'Upload Images';
-$this->params['breadcrumbs'][] = ['label' => 'Images', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="images-create">
 
@@ -20,11 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	
 	<div class="col-md-12">
-	 <div class="col-md-12"><h1><?= Html::encode($this->title) ?></h1></div>
+	 <div class="col-md-12"><h1><?= Html::encode($this->title) ?></h1> </div>
    <div class="col-md-6">
    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 	<?= $form->field($model, 'image')->fileInput(['id'=> 'file']) ?>
-	<?= Html::submitButton('<span class="glyphicon glyphicon-upload"></span> Upload', ['class' =>'btn btn-lg btn-primary']) ?>
+	<tr>
+	<td><?= Html::submitButton('<span class="glyphicon glyphicon-upload"></span> Upload', ['class' =>'btn btn-lg btn-primary']) ?></td>
+	<td style="align:right;"><?= Html::a('<< Back To Gallery',['indexrender'],['class'=>'btn btn-info btn-lg','style'=>'']) ?></td>
+	</tr>
 	</div>
 	<div class="col-md-6">
 	<div id="image_preview"><img id="previewing" src="" /></div>
