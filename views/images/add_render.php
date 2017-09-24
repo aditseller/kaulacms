@@ -24,11 +24,11 @@ $this->title = 'Upload Images';
 	<?= $form->field($model, 'image')->fileInput(['id'=> 'file']) ?>
 	<tr>
 	<td><?= Html::submitButton('<span class="glyphicon glyphicon-upload"></span> Upload', ['class' =>'btn btn-lg btn-primary']) ?></td>
-	<td style="align:right;"><?= Html::a('<< Back To Gallery',['indexrender'],['class'=>'btn btn-info btn-lg','style'=>'']) ?></td>
+	<td style="align:right;"><?= Html::a('Open Gallery',['index'],['class'=>'btn btn-info btn-lg','target'=>'_blank']) ?></td>
 	</tr>
 	</div>
 	<div class="col-md-6">
-	<div id="image_preview"><img id="previewing" src="" /></div>
+	<div id="image_preview"><img style="width:400px;" class="thumbnail" id="previewing" src="" /></div>
 	</div>
 	</div>
     
@@ -45,11 +45,13 @@ $this->title = 'Upload Images';
   
     #image_preview {
       
-   height: 393px;
+ 
+   
    
 
       
-      text-align: center;
+      text-align: left;
+	  margin-top:10px;
       color: #C0C0C0;
       background-color: #FFFFFF;
       overflow: hidden;

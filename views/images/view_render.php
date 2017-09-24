@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</br>
 	
         <div class="col-md-1">
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_image], [
+        <?= Html::a('Delete', ['deleterender', 'id' => $model->id_image], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 		
-		<?= Html::a('<< Back To Gallery',['indexrender'],['class'=>'btn btn-info','style'=>'']) ?>
+		<?= Html::a('Open Gallery',['index'],['class'=>'btn btn-info','target'=>'_blank']) ?>
 		</div>
 		</br>
 		

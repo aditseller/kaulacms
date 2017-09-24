@@ -32,10 +32,10 @@ class ImagesController extends Controller
 			
 			'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','add','view','indexrender','addrender','viewrender'],
+                'only' => ['index','add','view','addrender','viewrender'],
                 'rules' => [
                     [
-                        'actions' => ['index','add','view','indexrender','addrender','viewrender'],
+                        'actions' => ['index','add','view','addrender','viewrender'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -59,18 +59,7 @@ class ImagesController extends Controller
         ]);
     }
 	
-	//Index Render
-	public function actionIndexrender()
-    {
-		$this->layout = "blank";
-        $searchModel = new ImagesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index_render', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+	
 
     /**
      * Displays a single Images model.
@@ -173,6 +162,15 @@ class ImagesController extends Controller
 		unlink('public/uploads/images/'.sha1($id).'.jpg');
 
         return $this->redirect(['index']);
+    }
+	
+	//Deleterender
+	 public function actionDeleterender($id)
+    {
+        $this->findModel($id)->delete();
+		unlink('public/uploads/images/'.sha1($id).'.jpg');
+
+        return $this->redirect(['addrender']);
     }
 
     /**

@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Channel */
 
-$this->title = 'Update Channel: ' . $model->id_channel;
+$this->title = 'Edit Channel: ' . $model->id_channel;
 $this->params['breadcrumbs'][] = ['label' => 'Channels', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_channel, 'url' => ['view', 'id' => $model->id_channel]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Edit';
 ?>
 <div class="channel-update">
 

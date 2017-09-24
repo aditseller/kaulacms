@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Channel */
 
-$this->title = 'Create Channel';
+$this->title = 'Add Channel';
 $this->params['breadcrumbs'][] = ['label' => 'Channels', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
