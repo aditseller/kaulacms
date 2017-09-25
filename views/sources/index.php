@@ -16,18 +16,42 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Sources', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-plus"></span> Add Sources', ['add'], ['class' => 'btn btn-warning']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id_source',
+            [
+				'attribute'=>'id_source',
+				'label'=>'Id',
+				'format'=>'raw',
+				'headerOptions' => ['width' => '8%'],
+			],
             'source',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+        'header' => '',
+        'headerOptions' => ['style'=>'width:8%'],
+        'template'=>'{edit} {delete}',
+          'buttons' => [
+		   'edit' => function($url, $model) {
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>',$url, [
+                    'title' => Yii::t('yii','edit'),'class'=>'btn btn-info btn-sm',
+                    
+                ]);
+              },
+              'delete' => function($url, $model) {
+                return Html::a('<span class="glyphicon glyphicon-trash"></span>',$url, [
+                    'title' => Yii::t('yii','delete'),'class'=>'btn btn-danger btn-sm',
+                    'data-confirm' => Yii::t('yii','Are You Sure Delete this Data ?'),
+                    'data-method' => 'post',
+                ]);
+              }  
+          ],
+          ],
         ],
     ]); ?>
 </div>

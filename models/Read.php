@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 
+date_default_timezone_set("Asia/Jakarta");
+
 /**
  * This is the model class for table "read".
  *
@@ -38,17 +40,17 @@ class Read extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'teaser', 'content', 'created_by', 'created_at', 'channel', 'tag', 'source','image'], 'required'],
+            [['title', 'teaser', 'content', 'channel', 'tag', 'source','image'], 'required'],
             [['content'], 'string'],
-            [['created_by', 'channel', 'source'], 'integer'],
+            [['created_by', 'channel', 'source'], 'string', 'max' => 100],
             [['created_at'], 'safe'],
             [['title'], 'string', 'max' => 100],
             [['teaser'], 'string', 'max' => 150],
             [['tag'], 'string', 'max' => 500],
             [['title'], 'unique'],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['created_by' => 'id_user']],
-            [['channel'], 'exist', 'skipOnError' => true, 'targetClass' => Channel::className(), 'targetAttribute' => ['channel' => 'id_channel']],
-            [['source'], 'exist', 'skipOnError' => true, 'targetClass' => Sources::className(), 'targetAttribute' => ['source' => 'id_source']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['created_by' => 'username']],
+            [['channel'], 'exist', 'skipOnError' => true, 'targetClass' => Channel::className(), 'targetAttribute' => ['channel' => 'channel']],
+            [['source'], 'exist', 'skipOnError' => true, 'targetClass' => Sources::className(), 'targetAttribute' => ['source' => 'source']],
 			
         ];
     }
@@ -77,7 +79,7 @@ class Read extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(Users::className(), ['id_user' => 'created_by']);
+        return $this->hasOne(Users::className(), ['username' => 'created_by']);
     }
 
     /**
@@ -85,7 +87,7 @@ class Read extends \yii\db\ActiveRecord
      */
     public function getChannel0()
     {
-        return $this->hasOne(Channel::className(), ['id_channel' => 'channel']);
+        return $this->hasOne(Channel::className(), ['channel' => 'channel']);
     }
 
     /**
@@ -93,6 +95,13 @@ class Read extends \yii\db\ActiveRecord
      */
     public function getSource0()
     {
-        return $this->hasOne(Sources::className(), ['id_source' => 'source']);
+        return $this->hasOne(Sources::className(), ['source' => 'source']);
+    }
+	
+	public function beforeSave($insert) {
+		
+        $this->created_at = date("Y-m-d H:i:s");
+        $this->created_by = Yii::$app->user->identity->username;
+        return parent::beforeSave($insert);
     }
 }

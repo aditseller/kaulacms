@@ -50,6 +50,6 @@ class Channel extends \yii\db\ActiveRecord
      */
     public function getReads()
     {
-        return $this->hasMany(Read::className(), ['channel' => 'id_channel']);
+        return $this->hasMany(Read::className(), ['channel' => 'channel']);
     }
 }

@@ -8,6 +8,7 @@ use app\models\SourcesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SourcesController implements the CRUD actions for Sources model.
@@ -24,6 +25,18 @@ class SourcesController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+			
+			 'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','add','edit'],
+                'rules' => [
+                    [
+                        'actions' => ['index','add','edit'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -44,31 +57,21 @@ class SourcesController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Sources model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+  
 
     /**
      * Creates a new Sources model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionAdd()
     {
         $model = new Sources();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_source]);
+            return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->render('add', [
                 'model' => $model,
             ]);
         }
@@ -80,14 +83,14 @@ class SourcesController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionEdit($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_source]);
+            return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->render('edit', [
                 'model' => $model,
             ]);
         }

@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ]);?>
 
 
-	<?= $form->field($model, 'channel')->dropDownList(ArrayHelper::map(\app\models\Channel::find()->asArray()->all(), 'id_channel', 'channel'), ['prompt' => '-- Select Channel --']) ?>
+	<?= $form->field($model, 'channel')->dropDownList(ArrayHelper::map(\app\models\Channel::find()->asArray()->all(), 'channel', 'channel'), ['prompt' => '-- Select Channel --']) ?>
 
     <?= //work with ActiveForm
 $form->field($model, 'tag')->widget(\xj\tagit\Tagit::className(), [
@@ -62,7 +62,7 @@ EOF
     ],
 ]); ?>
 
-    	<?= $form->field($model, 'source')->dropDownList(ArrayHelper::map(\app\models\Sources::find()->asArray()->all(), 'id_source', 'source'), ['prompt' => '-- Select Source --']) ?>
+    	<?= $form->field($model, 'source')->dropDownList(ArrayHelper::map(\app\models\Sources::find()->asArray()->all(), 'source', 'source'), ['prompt' => '-- Select Source --']) ?>
 
 		
 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Upload Image</button>

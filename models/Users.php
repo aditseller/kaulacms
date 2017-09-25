@@ -76,7 +76,7 @@ class Users extends \yii\db\ActiveRecord
      */
     public function getReads()
     {
-        return $this->hasMany(Read::className(), ['created_by' => 'id_user']);
+        return $this->hasMany(Read::className(), ['created_by' => 'username']);
     }
 
     /**

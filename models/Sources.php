@@ -50,6 +50,6 @@ class Sources extends \yii\db\ActiveRecord
      */
     public function getReads()
     {
-        return $this->hasMany(Read::className(), ['source' => 'id_source']);
+        return $this->hasMany(Read::className(), ['source' => 'source']);
     }
 }
