@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		
 		<div class="col-md-5">
 		<div class="input-group">
-      <input id="foo" type="text"  value="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg" class="form-control">
+      <input id="foo" type="text"  value="<?= Yii::$app->params['assetsDir'] ?>uploads/images/<?= sha1($model->id_image) ?>.jpg" class="form-control">
       <span class="input-group-btn">
         <button class="btn btn-primary" type="button" data-clipboard-action="copy" data-clipboard-target="#foo">Copy URL</button>
       </span>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	
 	<div class="col-md-11">
-   <img style="width:525px;" src="<?= Yii::$app->params['siteUrl'] ?>public/uploads/images/<?= sha1($model->id_image) ?>.jpg">
+   <img style="width:525px;" src="<?= Yii::$app->params['assetsDir'] ?>uploads/images/<?= sha1($model->id_image) ?>.jpg">
 	</div>
 	
     </div>
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <!-- 2. Include library -->
-    <script src="<?= Yii::$app->params['siteUrl'] ?>public/js/clipboard.min.js"></script>
+    <script src="<?= Yii::$app->params['assetsDir'] ?>js/clipboard.min.js"></script>
 
     <!-- 3. Instantiate clipboard -->
     <script>
